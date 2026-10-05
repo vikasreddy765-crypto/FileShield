@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="FileShield verifies the integrity of digital attendance files using CRC-32 fingerprints.">
+  <title>FileShield — Digital Attendance File Integrity Auditor</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="orb one"></div><div class="orb two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="logo">🛡️</span><span><b>FileShield</b><small>Integrity Auditor</small></span></a>
+    <nav>
+      <a href="#home">Home</a><a href="#how">How It Works</a><a href="#about">About</a>
+      <button id="loginNav" class="dark-btn">Lecturer Login</button>
+    </nav>
+  </header>
+
+  <main id="publicView">
+    <section id="home" class="hero section">
+      <div>
+        <div class="eyebrow">DIGITAL ATTENDANCE SECURITY</div>
+        <h1>Know when an attendance file <span>has changed.</span></h1>
+        <p>FileShield gives lecturers a secure way to register trusted attendance records and detect later modifications using CRC-32 file fingerprints.</p>
+        <div class="actions"><button class="primary" id="heroLogin">👨‍🏫 Lecturer Portal</button><a class="secondary" href="#how">How it works →</a></div>
+        <div class="trust"><span>✓ CRC-32</span><span>✓ Modification detection</span><span>✓ Lecturer access</span></div>
+      </div>
+      <div class="hero-card">
+        <div class="shield">🛡️</div><h3>Integrity status</h3>
+        <div class="ready"><i></i> Ready to verify <b>✓</b></div>
+        <div class="hash"><small>CRC-32 fingerprint</small><code>e3b0c44298fc1c14...27ae41e4</code></div>
+        <div class="flow"><span>Original</span><b>→</b><span>Current file</span></div>
+        <label>✓ MATCH CHECK ENABLED</label>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="heading"><div class="eyebrow">HOW IT WORKS</div><h2>A digital fingerprint for your file.</h2><p>Even a small change normally produces a different CRC-32 fingerprint.</p></div>
+      <div class="steps">
+        <article><b>01</b><div>📤</div><h3>Register</h3><p>Upload the trusted original attendance file.</p></article>
+        <article><b>02</b><div>🔐</div><h3>Fingerprint</h3><p>FileShield calculates a CRC-32 fingerprint.</p></article>
+        <article><b>03</b><div>⚖️</div><h3>Compare</h3><p>Compare a later file with the registered fingerprint.</p></article>
+        <article><b>04</b><div>✅</div><h3>Report</h3><p>See whether the file is unchanged or modified.</p></article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="about"><div><div class="eyebrow">BUILT FOR TRUST</div><h2>Simple for lecturers. Serious about integrity.</h2></div><p>FileShield is designed for colleges and educators who need a clear way to detect changes in digital attendance records. It checks file integrity rather than analyzing student performance.</p></div>
+      <div class="privacy">🔒 <span><b>Privacy by design</b><br>Verification uploads are deleted after hashing. Production deployments should add institutional privacy controls, encrypted storage and an approved retention policy.</span></div>
+    </section>
+  </main>
+
+  <main id="authView" class="hidden">
+    <section class="auth-page">
+      <div class="auth-card">
+        <a href="#home" class="back">← Back to FileShield</a>
+        <div class="auth-brand">🛡️</div>
+        <div class="heading"><div class="eyebrow">LECTURER PORTAL</div><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to protect your attendance records.</p></div>
+        <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Login</button><button class="auth-tab" data-auth="register">Create Account</button></div>
+        <form id="loginForm"><input id="loginEmail" type="email" placeholder="College email" required><input id="loginPassword" type="password" placeholder="Password" required><button class="primary full">Login securely</button><div id="loginMsg" class="msg"></div></form>
+        <form id="registerForm" class="hidden"><input id="regName" type="text" placeholder="Full name" required><input id="regEmail" type="email" placeholder="College email" required><input id="regPassword" type="password" placeholder="Password (8+ characters)" minlength="8" required><button class="primary full">Create lecturer account</button><div id="registerMsg" class="msg"></div></form>
+      </div>
+    </section>
+  </main>
+
+  <main id="dashboardView" class="hidden">
+    <header class="dashbar">
+      <a class="brand" href="#"><span class="logo">🛡️</span><span><b>FileShield</b><small>Lecturer Portal</small></span></a>
+      <div class="dash-user"><span id="userName"></span><button id="logout" class="secondary">Logout</button></div>
+    </header>
+    <section class="dashboard section">
+      <div class="dash-head"><div><div class="eyebrow">LECTURER DASHBOARD</div><h1>Welcome, <span id="welcomeName"></span> 👋</h1><p>Register trusted attendance files and verify them whenever needed.</p></div></div>
+      <div class="stats"><div><b id="statFiles">0</b><span>Registered files</span></div><div><b id="statChecks">0</b><span>Verifications</span></div><div><b id="statVerified">0</b><span>Verified</span></div><div><b id="statModified">0</b><span>Modified detected</span></div></div>
+
+      <div class="dash-grid">
+        <section class="dash-card">
+          <div class="card-title"><div><b>📁 Register original</b><small>Create a trusted fingerprint.</small></div></div>
+          <form id="dashRegisterForm">
+            <label class="dropzone" id="dashDrop"><input id="dashFile" type="file" accept=".csv,.xlsx,.xls,.pdf"><span>📤</span><b>Drop original file or browse</b><small>CSV, XLSX, XLS, PDF • max 10 MB</small></label>
+            <div id="dashFileName" class="selected hidden"></div>
+            <button class="primary full">Register Original</button><div id="dashRegisterMsg" class="msg"></div>
+          </form>
+        </section>
+
+        <section class="dash-card">
+          <div class="card-title"><div><b>🔍 Verify a file</b><small>Compare it with a registered original.</small></div></div>
+          <form id="dashVerifyForm">
+            <select id="fileSelect" required><option value="">Loading files…</option></select>
+            <label class="dropzone compact" id="verifyDrop"><input id="verifyFile" type="file" accept=".csv,.xlsx,.xls,.pdf"><span>🔎</span><b>Drop file to check or browse</b></label>
+            <div id="verifyFileName" class="selected hidden"></div>
+            <button class="primary full">Check Integrity</button><div id="dashVerifyMsg" class="msg"></div>
+          </form>
+        </section>
+      </div>
+
+      <section class="dash-card table-card">
+        <div class="card-title"><div><b>📋 Registered attendance files</b><small>Only your records are shown to lecturer accounts.</small></div><button id="refresh" class="secondary">Refresh</button></div>
+        <div class="table-wrap"><table><thead><tr><th>File</th><th>Registered</th><th>Checks</th><th>CRC-32</th><th>Action</th></tr></thead><tbody id="fileTable"></tbody></table></div>
+      </section>
+
+      <section class="dash-card table-card">
+        <div class="card-title"><div><b>🧾 Verification history</b><small>Recent integrity checks.</small></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Checked file</th><th>Original</th><th>Result</th><th>Time</th></tr></thead><tbody id="historyTable"></tbody></table></div>
+      </section>
+
+      <section id="adminCard" class="dash-card table-card hidden">
+        <div class="card-title"><div><b>👑 Admin user management</b><small>Visible only to administrator accounts.</small></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Created</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

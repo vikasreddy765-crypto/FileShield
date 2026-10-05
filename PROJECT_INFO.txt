@@ -1,0 +1,29 @@
+FILES HIELD FINAL PROJECT
+
+Project: FileShield — Digital Attendance File Integrity Auditor
+
+Main users:
+- Lecturer
+- Administrator
+
+Core technology:
+- HTML/CSS/JavaScript frontend
+- Node.js + Express backend
+- MongoDB + Mongoose
+- bcrypt password hashing
+- JWT authentication
+- CRC-32 file integrity verification
+- Multer secure upload handling
+
+Supported attendance file formats:
+- CSV
+- XLSX
+- XLS
+- PDF
+
+Main workflow:
+Lecturer -> Login -> Dashboard -> Register Original -> CRC-32 fingerprint -> Later Upload -> Verify -> VERIFIED or MODIFIED -> History / Report
+
+Important:
+Create .env from .env.example before running.
+Do not upload .env or real student attendance data to GitHub.
